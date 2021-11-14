@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html>
 
     <body>
         <meta charset="UTF-8">
         <p id="titulo">
-            Minha poupanca
+            Minha poupança
 
         </p>
 
@@ -19,9 +20,8 @@
     </p>
         
     <p id="extrato" style="background-color: #aaffff;">
-        Extrato
+        Extrato:
     </p>
-
 
 
     </body>
@@ -60,14 +60,15 @@
             
             } else {
                 this.saldo -= valor;
+                this.movimentacao.push("Saque de " + valorHTML.value);
             }
             saidaSaldo.innerHTML = this.saldo;
-            this.movimentacao.push("Saque de " + valorHTML.value);
             valorHTML.value  = "";
         },
         
         exibirExtrato: function() {
 
+            saidaExtrato.innerHTML = "Extrato: <br>";
             for(i=0; i=this.movimentacao.length-1; i++) {
                 saidaExtrato.innerHTML += this.movimentacao[i] + "<br>";
             }
