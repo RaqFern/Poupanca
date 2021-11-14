@@ -1,0 +1,80 @@
+<html>
+
+    <body>
+        <meta charset="UTF-8">
+        <p id="titulo">
+            Minha poupanca
+
+        </p>
+
+        <p id="saldo" style="background-color: #aaffff">
+        SALDO:
+        </p>
+
+        <p id="acoes">
+            <input id="valor"><br>
+            <input type="button" value="Depósito" onclick="poupanca.depositar();">
+            <input type="button" value="Saque" onclick="poupanca.sacar()"><br>
+            <input type="button" value="Extrato" onclick="poupanca.exibirExtrato();">     
+    </p>
+        
+    <p id="extrato" style="background-color: #aaffff;">
+        Extrato
+    </p>
+
+
+
+    </body>
+
+<script>
+    // propriedades
+
+    var saidaSaldo = document.getElementById("saldo");
+    var saidaExtrato = document.getElementById("extrato");
+    var valorHTML = document.getElementById("valor");
+    
+    var poupanca = {
+        saldo: 0,
+        movimentacao: [],
+    
+        // métodos: //
+    
+        depositar: function() {
+            
+            this.saldo += Number (valorHTML.value);
+            saidaSaldo.innerHTML = this.saldo;
+            this.movimentacao.push("Depósito de " + valorHTML.value);
+            valorHTML.value  = "";
+    
+        },
+           
+        sacar: function() {
+
+            // PERMITE QUE O SALDO SEJA NEGATIVO this.saldo -= Number (valorHTML.value);//
+            //saidaSaldo.innerHTML = this.saldo;//    
+
+            var valor = Number(valorHTML.value);
+           
+            if (valor>this.saldo) {
+                alert("Saldo insuficiente");
+            
+            } else {
+                this.saldo -= valor;
+            }
+            saidaSaldo.innerHTML = this.saldo;
+            this.movimentacao.push("Saque de " + valorHTML.value);
+            valorHTML.value  = "";
+        },
+        
+        exibirExtrato: function() {
+
+            for(i=0; i=this.movimentacao.length-1; i++) {
+                saidaExtrato.innerHTML += this.movimentacao[i] + "<br>";
+            }
+        }
+    
+    }
+
+</script>    
+
+</html>
