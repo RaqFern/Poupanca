@@ -15,7 +15,7 @@
         <p id="acoes">
             <input id="valor"><br>
             <input type="button" value="Depósito" onclick="poupanca.depositar();">
-            <input type="button" value="Saque" onclick="poupanca.sacar()"><br>
+            <input type="button" value="Saque" onclick="poupanca.sacar();"><br>
             <input type="button" value="Extrato" onclick="poupanca.exibirExtrato();">     
     </p>
         
@@ -69,7 +69,7 @@
         exibirExtrato: function() {
 
             saidaExtrato.innerHTML = "Extrato: <br>";
-            for(i=0; i=this.movimentacao.length-1; i++) {
+            for(i=0; i<=this.movimentacao.length-1; i++) {
                 saidaExtrato.innerHTML += this.movimentacao[i] + "<br>";
             }
         }
