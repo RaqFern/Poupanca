@@ -3,8 +3,11 @@
 
     <body>
         <meta charset="UTF-8">
+
+        
+
         <p id="titulo">
-            Minha poupança
+        Poupança
 
         </p>
 
@@ -19,11 +22,11 @@
             <input type="button" value="Extrato" onclick="poupanca.exibirExtrato();">     
     </p>
         
-    <p id="extrato" style="background-color: #aaffff;">
+    <p id="extrato" style="background-color: #5cb4cf;">
         Extrato:
     </p>
 
-
+    
     </body>
 
 <script>
@@ -36,11 +39,14 @@
     function dataCurta() {
 
         var data = new Date();
+
         var d = data.getDate();
         var m = data.getMonth()+1; 
         var a = data.getFullYear();
+        var h = data.getHours();
+        var min = data.getMinutes();
         
-        if (d.toString.length==1) {
+        if (d.toString.lenght==1) {
             d = "0" + d;
         }
 
@@ -48,7 +54,15 @@
             m = "0" + m;
         }
 
-        return d + "/" + m + "/" + a;
+        if(h.toString.lenght==1) {
+            h = "0" + h;
+        }
+
+        if(min.toString.lenght==1) {
+            min = "0" + min;
+        }
+
+        return d + "/" + m + "/" + a + " - " + h + ":" + min;
 
     }
 
@@ -60,10 +74,11 @@
     
         depositar: function() {
             
-            var valor = Number(valorHTML.value)
+            var valor = Number(valorHTML.value);
+
             this.saldo += valor;
-            saidaSaldo.innerHTML = this.saldo;
-            this.movimentacao.push(dataCurta() + " - Depósito de R$ " + valorHTML.value);
+            saidaSaldo.innerHTML = "R$ " + this.saldo.toFixed(2);
+            this.movimentacao.push(dataCurta() + ": + R$ " + valor.toFixed(2));
             valorHTML.value = "";
         },
            
@@ -79,9 +94,9 @@
             
             } else {
                 this.saldo -= valor;
-                this.movimentacao.push(dataCurta() + " - Saque de R$ " + valor);
+                this.movimentacao.push(dataCurta() + ": - R$ " + valor.toFixed(2));
             }
-            saidaSaldo.innerHTML = this.saldo;
+            saidaSaldo.innerHTML = "R$ " + this.saldo.toFixed(2);
             valorHTML.value  = "";
         },
         
