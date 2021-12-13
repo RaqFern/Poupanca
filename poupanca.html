@@ -34,12 +34,13 @@
     var valorHTML = document.getElementById("valor");
     
     function dataCurta() {
+
         var data = new Date();
         var d = data.getDate();
         var m = data.getMonth()+1; 
         var a = data.getFullYear();
         
-        if (id.toString.length==1) {
+        if (d.toString.length==1) {
             d = "0" + d;
         }
 
