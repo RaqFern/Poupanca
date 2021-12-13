@@ -33,6 +33,24 @@
     var saidaExtrato = document.getElementById("extrato");
     var valorHTML = document.getElementById("valor");
     
+    function dataCurta() {
+        var data = new Date();
+        var d = data.getDate();
+        var m = data.getMonth()+1; 
+        var a = data.getFullYear();
+        
+        if (id.toString.length==1) {
+            d = "0" + d;
+        }
+
+        if(m.toString.lenght==1) {
+            m = "0" + m;
+        }
+
+        return d + "/" + m + "/" + a;
+
+    }
+
     var poupanca = {
         saldo: 0,
         movimentacao: [],
@@ -41,11 +59,11 @@
     
         depositar: function() {
             
-            this.saldo += Number (valorHTML.value);
+            var valor = Number(valorHTML.value)
+            this.saldo += valor;
             saidaSaldo.innerHTML = this.saldo;
-            this.movimentacao.push("Depósito de " + valorHTML.value);
-            valorHTML.value  = "";
-    
+            this.movimentacao.push(dataCurta() + " - Depósito de R$ " + valorHTML.value);
+            valorHTML.value = "";
         },
            
         sacar: function() {
@@ -60,7 +78,7 @@
             
             } else {
                 this.saldo -= valor;
-                this.movimentacao.push("Saque de " + valorHTML.value);
+                this.movimentacao.push(dataCurta() + " - Saque de R$ " + valor);
             }
             saidaSaldo.innerHTML = this.saldo;
             valorHTML.value  = "";
